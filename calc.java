@@ -13,8 +13,7 @@ class calc {
 
             int check = nums.length;
             if (check > 3){
-                System.out.print("throws Exception");
-                break;
+                throw new RuntimeException();
             }
             String[] stroka9 = {"0", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"};
             String[] stroka10 = {"0", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC", "C"};
@@ -23,11 +22,10 @@ class calc {
                 String operation = nums[1];
                 String secondnum = nums[2];
             }  catch (ArrayIndexOutOfBoundsException e) {
-            System.out.print("throws Exception" + "\n");
-            break;
-             }  catch (StringIndexOutOfBoundsException e) {
-            System.out.print("throws Exception" + "\n");
-            break;
+                throw new RuntimeException();
+
+            }  catch (StringIndexOutOfBoundsException e) {
+                throw new RuntimeException();
         }
             String firstnum = nums[0];
             String operation = nums[1];
@@ -38,8 +36,7 @@ class calc {
                 boolean asd = (Character.isDigit(firstnum.charAt(0)));
                 boolean dsa = (Character.isDigit(secondnum.charAt(0)));
             }catch (StringIndexOutOfBoundsException e){
-                System.out.print("throws Exception" + "\n");
-                break;
+                throw new RuntimeException();
             }
 
 
@@ -51,12 +48,11 @@ class calc {
                     int num_one = Integer.parseInt(firstnum);
                     int num_two = Integer.parseInt(secondnum);
                     if( num_one  > 10)  {
-                        System.out.print("throws Exception");
-                        break;
+                        throw new RuntimeException();
+
                     }
                     if( num_two  > 10)  {
-                        System.out.print("throws Exception");
-                        break;
+                        throw new RuntimeException();
                     }
                     switch (operation) {
                         case "-":
@@ -87,12 +83,10 @@ class calc {
                     int index_two = Arrays.asList(stroka9).indexOf(secondnum);
 
                     if (index_two == -1){
-                       System.out.print("throws Exception");
-                       break;
+                        throw new RuntimeException();
                     }
                     if (index_one == -1){
-                        System.out.print("throws Exception");
-                        break;
+                        throw new RuntimeException();
                     }
 
                     int result = 0;
@@ -119,8 +113,7 @@ class calc {
                             break;
                     }
                     if (result <= 0){
-                        System.out.print("throws Exception");
-                        break;
+                        throw new RuntimeException();
                     }
                     String last_result = Integer.toString(result);
                     int tenorone = last_result.length();
@@ -166,8 +159,7 @@ class calc {
                     }
                 }
             } else {
-                System.out.print("throws Exception" + "\n");
-                break;
+                throw new RuntimeException();
 
             }
 
