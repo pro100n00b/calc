@@ -1,8 +1,6 @@
 import java.util.Scanner;
 import java.util.Arrays;
 
-
-
 class calc {
 
     public static void main(String[] args) {
@@ -87,6 +85,16 @@ class calc {
 
                     int index_one = Arrays.asList(stroka9).indexOf(firstnum);
                     int index_two = Arrays.asList(stroka9).indexOf(secondnum);
+
+                    if (index_two == -1){
+                       System.out.print("throws Exception");
+                       break;
+                    }
+                    if (index_one == -1){
+                        System.out.print("throws Exception");
+                        break;
+                    }
+
                     int result = 0;
                     switch (operation) {
                         case "-":
