@@ -34,6 +34,17 @@ class calc {
             String firstnum = nums[0];
             String operation = nums[1];
             String secondnum = nums[2];
+            try {
+
+
+                boolean asd = (Character.isDigit(firstnum.charAt(0)));
+                boolean dsa = (Character.isDigit(secondnum.charAt(0)));
+            }catch (StringIndexOutOfBoundsException e){
+                System.out.print("throws Exception" + "\n");
+                break;
+            }
+
+
 
             boolean asd = (Character.isDigit(firstnum.charAt(0)));
             boolean dsa = (Character.isDigit(secondnum.charAt(0)));
