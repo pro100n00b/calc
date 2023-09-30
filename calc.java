@@ -6,42 +6,46 @@ class calc {
     static List<String> romanTens = List.of("0", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC", "C");
 
     public static void main(String[] args) {
-        calc(String.valueOf(0));
-    }
-    public static String calc(String input){
-            while (true) {
+        while (true) {
             System.out.println("Введите значения (a + b,a / b, a * b, a - b):");
             Scanner scanner = new Scanner(System.in);
             String s = scanner.nextLine();
-            String[] nums = s.split(" ");
-
-            if (nums.length != 3) {
-                throw new RuntimeException("Не верный синтаксис");
-            }
-            String firstDigit = nums[0];
-            String operation = nums[1];
-            String secondDigit = nums[2];
-            
-            boolean asd = (Character.isDigit(firstDigit.charAt(0)));
-            boolean dsa = (Character.isDigit(secondDigit.charAt(0)));
-            String result;
-            
-            if (asd && dsa) {
-
-                result = arabicOperation(firstDigit, secondDigit, operation);
-
-            } else if (!asd && !dsa) {
-
-                result = romanOperation(firstDigit, secondDigit, operation);
-
-
-            } else {
-                throw new RuntimeException("Нельзя использовать два разных вида Чисел");
-            }
-            System.out.println(result);
+            System.out.println(calc(s));
         }
     }
-    
+    public static String calc(String input) {
+
+        String[] nums = input.split(" ");
+
+
+        if (nums.length != 3) {
+            throw new RuntimeException("Не верный синтаксис");
+        }
+        String firstDigit = nums[0];
+        String operation = nums[1];
+        String secondDigit = nums[2];
+
+        boolean romanOrArabicCheck = (Character.isDigit(firstDigit.charAt(0)));
+        boolean romanOrArabicCheckSecondDigit = (Character.isDigit(secondDigit.charAt(0)));
+        String result;
+
+        if (romanOrArabicCheck && romanOrArabicCheckSecondDigit) {
+
+            result = arabicOperation(firstDigit, secondDigit, operation);
+
+        } else if (!romanOrArabicCheck && !romanOrArabicCheckSecondDigit) {
+
+            result = romanOperation(firstDigit, secondDigit, operation);
+
+
+        } else {
+            throw new RuntimeException("Нельзя использовать два разных вида цисел");
+        }
+
+        return result;
+    }
+
+
     private static String romanOperation(String firstDigit, String secondDigit, String operation) {
         int result;
         int firstIndexDigit = romanDigit.indexOf(firstDigit);
@@ -54,13 +58,7 @@ class calc {
             throw new RuntimeException("Неверное значение");
         }
 
-        switch (operation) {
-            case "-" -> result = firstIndexDigit - secondIndexDigit;
-            case "+" -> result = firstIndexDigit + secondIndexDigit;
-            case "/" -> result = firstIndexDigit / secondIndexDigit;
-            case "*" -> result = firstIndexDigit * secondIndexDigit;
-            default -> throw new RuntimeException("Неверная операция");
-        }
+        result = getOperationResult(operation, firstIndexDigit, secondIndexDigit);
         if (result <= 0) {
             throw new RuntimeException("Результат не может быть меньше/равен 0");
         }
@@ -71,22 +69,19 @@ class calc {
 
         return getRomanFromArabic(resultString);
     }
-    
+
     private static String getRomanFromArabic(String resultString) {
 
         if ( resultString.length() != 1){
         String firstRomanFromArabic = romanTens.get(Integer.parseInt(resultString.substring(0,1)));
         String secondRomanFromArabc = romanDigit.get(Integer.parseInt(resultString.substring(1,2)));
-        switch (firstRomanFromArabic) {
-            case "0":
+        if (firstRomanFromArabic.equals("0")) {
                 firstRomanFromArabic = "";
-                break;
         }
 
-        switch (secondRomanFromArabc) {
-            case "0":
+        if (secondRomanFromArabc.equals("0")) {
                 secondRomanFromArabc = "";
-                break;
+
         }
 
         return firstRomanFromArabic + secondRomanFromArabc;}
@@ -106,13 +101,19 @@ class calc {
             throw new RuntimeException("Число больше десяти");
 
         }
-            switch (operation) {
-                case "-" -> result = digitOne - digitTwo;
-                case "+" -> result = digitOne + digitTwo;
-                case "/" -> result = digitOne / digitTwo;
-                case "*" -> result = digitOne * digitTwo;
-                default -> throw new RuntimeException("Неверная операция");
-            }
-            return String.valueOf(result);
+        result = getOperationResult(operation, digitOne, digitTwo);
+        return String.valueOf(result);
         }
+
+    private static int getOperationResult(String operation, int digitOne, int digitTwo) {
+        int result;
+        switch (operation) {
+            case "-" -> result = digitOne - digitTwo;
+            case "+" -> result = digitOne + digitTwo;
+            case "/" -> result = digitOne / digitTwo;
+            case "*" -> result = digitOne * digitTwo;
+            default -> throw new RuntimeException("Неверная операция");
+        }
+        return result;
     }
+}
