@@ -10,20 +10,20 @@ class calc {
             System.out.println("Введите значения (a + b,a / b, a * b, a - b):");
             Scanner scanner = new Scanner(System.in);
             String s = scanner.nextLine();
-            System.out.println(calc(s));
+            System.out.println(Calc(s));
         }
     }
-    public static String calc(String input) {
+    public static String Calc(String input) {
 
-        String[] nums = input.split(" ");
+        String[] digits = input.split(" ");
 
 
-        if (nums.length != 3) {
+        if (digits.length != 3) {
             throw new RuntimeException("Не верный синтаксис");
         }
-        String firstDigit = nums[0];
-        String operation = nums[1];
-        String secondDigit = nums[2];
+        String firstDigit = digits[0];
+        String operation = digits[1];
+        String secondDigit = digits[2];
 
         boolean romanOrArabicCheck = (Character.isDigit(firstDigit.charAt(0)));
         boolean romanOrArabicCheckSecondDigit = (Character.isDigit(secondDigit.charAt(0)));
