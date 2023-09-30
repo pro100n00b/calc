@@ -1,7 +1,7 @@
 import java.util.List;
 import java.util.Scanner;
 
-class calc {
+class Main {
     static List<String> romanDigit = List.of("0", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X");
     static List<String> romanTens = List.of("0", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC", "C");
 
