@@ -36,7 +36,7 @@ class calc {
 
 
             } else {
-                throw new RuntimeException("Нельзя использовать два разных вида цисел");
+                throw new RuntimeException("Нельзя использовать два разных вида Чисел");
             }
             System.out.println(result);
         }
