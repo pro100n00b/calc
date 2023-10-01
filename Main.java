@@ -10,10 +10,10 @@ class Main {
             System.out.println("Введите значения (a + b,a / b, a * b, a - b):");
             Scanner scanner = new Scanner(System.in);
             String s = scanner.nextLine();
-            System.out.println(Calc(s));
+            System.out.println(calc(s));
         }
     }
-    public static String Calc(String input) {
+    public static String calc(String input) {
 
         String[] digits = input.split(" ");
 
@@ -73,37 +73,37 @@ class Main {
     private static String getRomanFromArabic(String resultString) {
 
         if ( resultString.length() != 1){
-        String firstRomanFromArabic = romanTens.get(Integer.parseInt(resultString.substring(0,1)));
-        String secondRomanFromArabc = romanDigit.get(Integer.parseInt(resultString.substring(1,2)));
-        if (firstRomanFromArabic.equals("0")) {
+            String firstRomanFromArabic = romanTens.get(Integer.parseInt(resultString.substring(0,1)));
+            String secondRomanFromArabc = romanDigit.get(Integer.parseInt(resultString.substring(1,2)));
+            if (firstRomanFromArabic.equals("0")) {
                 firstRomanFromArabic = "";
-        }
+            }
 
-        if (secondRomanFromArabc.equals("0")) {
+            if (secondRomanFromArabc.equals("0")) {
                 secondRomanFromArabc = "";
 
-        }
+            }
 
-        return firstRomanFromArabic + secondRomanFromArabc;}
+            return firstRomanFromArabic + secondRomanFromArabc;}
         else {
             return romanDigit.get(Integer.parseInt(resultString.substring(0,1)));
         }
 
     }
     private static String arabicOperation (String firstDigit, String secondDigit, String operation){
-            int result;
-            int digitOne = Integer.parseInt(firstDigit);
-            int digitTwo = Integer.parseInt(secondDigit);
-            if (digitOne > 10) {
-                throw new RuntimeException("Число больше десяти");
-            }
+        int result;
+        int digitOne = Integer.parseInt(firstDigit);
+        int digitTwo = Integer.parseInt(secondDigit);
+        if (digitOne > 10) {
+            throw new RuntimeException("Число больше десяти");
+        }
         if (digitTwo > 10) {
             throw new RuntimeException("Число больше десяти");
 
         }
         result = getOperationResult(operation, digitOne, digitTwo);
         return String.valueOf(result);
-        }
+    }
 
     private static int getOperationResult(String operation, int digitOne, int digitTwo) {
         int result;
