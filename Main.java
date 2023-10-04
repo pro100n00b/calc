@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 class Main {
@@ -10,9 +11,10 @@ class Main {
             System.out.println("Введите значения (a + b,a / b, a * b, a - b):");
             Scanner scanner = new Scanner(System.in);
             String s = scanner.nextLine();
-            System.out.println(calc(s));
+            System.out.println(Calc(s));
         }
     }
+
     public static String calc(String input) {
 
         String[] digits = input.split(" ");
@@ -24,6 +26,9 @@ class Main {
         String firstDigit = digits[0];
         String operation = digits[1];
         String secondDigit = digits[2];
+        if (Objects.equals(firstDigit, "0") || Objects.equals(secondDigit, "0")) {
+            throw new RuntimeException("Невереное значение");
+        }
 
         boolean romanOrArabicCheck = (Character.isDigit(firstDigit.charAt(0)));
         boolean romanOrArabicCheckSecondDigit = (Character.isDigit(secondDigit.charAt(0)));
@@ -62,7 +67,7 @@ class Main {
         if (result <= 0) {
             throw new RuntimeException("Результат не может быть меньше/равен 0");
         }
-        if (result == 100){
+        if (result == 100) {
             return "C";
         }
         String resultString = Integer.toString(result);
@@ -72,9 +77,9 @@ class Main {
 
     private static String getRomanFromArabic(String resultString) {
 
-        if ( resultString.length() != 1){
-            String firstRomanFromArabic = romanTens.get(Integer.parseInt(resultString.substring(0,1)));
-            String secondRomanFromArabc = romanDigit.get(Integer.parseInt(resultString.substring(1,2)));
+        if (resultString.length() != 1) {
+            String firstRomanFromArabic = romanTens.get(Integer.parseInt(resultString.substring(0, 1)));
+            String secondRomanFromArabc = romanDigit.get(Integer.parseInt(resultString.substring(1, 2)));
             if (firstRomanFromArabic.equals("0")) {
                 firstRomanFromArabic = "";
             }
@@ -84,13 +89,14 @@ class Main {
 
             }
 
-            return firstRomanFromArabic + secondRomanFromArabc;}
-        else {
-            return romanDigit.get(Integer.parseInt(resultString.substring(0,1)));
+            return firstRomanFromArabic + secondRomanFromArabc;
+        } else {
+            return romanDigit.get(Integer.parseInt(resultString.substring(0, 1)));
         }
 
     }
-    private static String arabicOperation (String firstDigit, String secondDigit, String operation){
+
+    private static String arabicOperation(String firstDigit, String secondDigit, String operation) {
         int result;
         int digitOne = Integer.parseInt(firstDigit);
         int digitTwo = Integer.parseInt(secondDigit);
