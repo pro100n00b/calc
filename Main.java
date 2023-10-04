@@ -26,7 +26,7 @@ class Main {
         String firstDigit = digits[0];
         String operation = digits[1];
         String secondDigit = digits[2];
-        if (Objects.equals(firstDigit, "0") || Objects.equals(secondDigit, "0")) {
+        if (("0".equals(firstDigit)) || "0".equals(secondDigit)) {
             throw new RuntimeException("Невереное значение");
         }
 
